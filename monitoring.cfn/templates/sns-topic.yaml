@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  EmailSubscriber:
+    Type: String
+Resources:
+  OpsNotices:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: !Ref EmailSubscriber
+          Protocol: email
+Outputs:
+  SnsTopicArn: 
+    Value: !Ref OpsNotices

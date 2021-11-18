@@ -9,6 +9,7 @@ deployments:
           cfngin_bucket_name: cfngin-training-${env USER}
       - path: tf-state.cfn
       - path: img-mgr.tf
+      - path: monitoring.cfn
     regions:
       - us-west-2
     account_id: 379776712928

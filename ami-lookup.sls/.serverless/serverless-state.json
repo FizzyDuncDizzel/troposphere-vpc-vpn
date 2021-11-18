@@ -190,7 +190,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/ami-lookup/common/1637178325707-2021-11-17T19:45:25.707Z/ami-lookup.zip"
+                "S3Key": "serverless/ami-lookup/common/1637258493321-2021-11-18T18:01:33.321Z/ami-lookup.zip"
               },
               "Handler": "lambda/index.handler",
               "Runtime": "python3.7",
@@ -364,7 +364,7 @@
           "!package-lock.json"
         ],
         "artifact": "/Users/duncman/Documents/troposphere/troposphere-vpc-vpn/ami-lookup.sls/.serverless/ami-lookup.zip",
-        "artifactDirectoryName": "serverless/ami-lookup/common/1637178325707-2021-11-17T19:45:25.707Z"
+        "artifactDirectoryName": "serverless/ami-lookup/common/1637258493321-2021-11-18T18:01:33.321Z"
       },
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
@@ -378,7 +378,7 @@
     "artifact": "/Users/duncman/Documents/troposphere/troposphere-vpc-vpn/ami-lookup.sls/.serverless/ami-lookup.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/ami-lookup/common/1637178325707-2021-11-17T19:45:25.707Z",
+    "artifactDirectoryName": "serverless/ami-lookup/common/1637258493321-2021-11-18T18:01:33.321Z",
     "artifact": "ami-lookup.zip"
   }
 }
