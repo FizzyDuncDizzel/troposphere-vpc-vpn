@@ -1,0 +1,41 @@
+namespace: ${customer}-${environment}
+sys_path: ./
+
+stacks:
+  ops-topic:
+    template_path: templates/sns-topic.yaml
+    variables:
+      EmailSubscriber: robert.duncan@rackspace.com
+  healthy-hosts:
+    class_path: blueprints.cloudwatch-alarm.BlueprintClass
+    variables:
+      SnsAlarmArns: ${output ops-topic::SnsTopicArn}
+      CustomerName: ${customer}
+      EnvironmentName: ${environment}
+      AlarmDescription: ALB does not have the desired number of healthy instances
+      AlarmThreshold: 1
+      AlarmPeriod: 1
+      ComparisonOperator: LessThanThreshold
+      MetricNamespace: AWS/ApplicationELB
+      MetricName: HealthyHostCount
+      DimensionSets:
+        LoadBalancer: ${elb_name}
+      EvaluationTime: 60
+      StatisticType: Minimum
+  cpu-alarm:
+    class_path: blueprints.cloudwatch-alarm.BlueprintClass
+    variables:
+      SnsAlarmArns: ${output ops-topic::SnsTopicArn}
+      CustomerName: ${customer}
+      EnvironmentName: ${environment}
+      OKActions: 
+      AlarmDescription: ASG CPU out of range
+      AlarmThreshold: 50
+      AlarmPeriod: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      MetricNamespace: AWS/EC2
+      MetricName: CPUUtilization
+      DimensionSets:
+        AutoScalingGroupName: ${asg_name}
+      EvaluationTime: 60
+      StatisticType: Average
