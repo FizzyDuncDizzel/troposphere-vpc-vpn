@@ -1,0 +1,33 @@
+namespace: ${customer}-${environment}
+sys_path: ./
+
+pre_deploy:
+  import_key_hook:
+    path: core_hooks.import_key.import_key
+    args:
+      key_name: ${ssh_key_name}
+      key_location: ../keys/top-c1-demo.pub
+
+stacks:
+  core-chefbuckets:
+    class_path: core_blueprints.chef_buckets.ChefBuckets
+    variables:
+      ChefBucketName: ${default chef_config_bucket_name::undefined}
+      ChefDataBucketName: ${default chef_artifact_bucket_name::undefined}
+      CustomerName: ${customer}
+      EnvironmentName: ${environment}
+  core-vpneip:
+    class_path: core_blueprints.vpn_eip.VpnEip
+    variables:
+      CustomerName: ${customer}
+      EnvironmentName: ${environment}
+
+post_deploy:
+  package_and_upload_cookbook:
+    path: core_hooks.cookbook_archive.package_and_upload
+    args:
+      always_upload_new_archive: true
+      environment: ${environment}
+      cookbook_relative_path_default: vpn_cookbook_relative_path::../cookbooks/${customer}_vpn
+      s3_bucket_key_default: vpn_s3_bucket_key::vpnservers
+      chef_config_bucket_output: core-chefbuckets::ChefBucketName

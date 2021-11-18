@@ -1,0 +1,39 @@
+DEPENDENCIES
+  openvpn
+    git: https://github.com/xhost-cookbooks/openvpn.git
+    revision: 34b2723a7539c8550d6b42e9dd09fe285c158b9c
+    ref: 34b2723
+  sturdy_openvpn
+    git: git@bitbucket.org:nbdev/sturdy_openvpn-cookbook.git
+    revision: 5ab8bbd3d7d6c3b11d2a731949dea49ceeba781d
+    branch: top-working-branch-from-4.0.1
+  top-launch-demo_vpc
+    path: .
+    metadata: true
+
+GRAPH
+  apt (7.4.0)
+  aws (7.5.0)
+  chef-sugar (5.1.12)
+  citadel (1.1.0)
+  firewall (2.7.1)
+    chef-sugar (>= 0.0.0)
+  line (0.6.3)
+  ohai (5.3.0)
+  openvpn (3.0.0)
+    apt (>= 0.0.0)
+    sysctl (~> 0.8)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  sturdy_openvpn (4.0.1)
+    aws (~> 7.1)
+    citadel (~> 1.1)
+    firewall (~> 2.6)
+    line (~> 0.6)
+    openvpn (~> 3.0)
+  sysctl (0.10.2)
+    ohai (>= 4.0)
+  top-launch-demo_vpc (1.0.0)
+    sturdy_openvpn (~> 4.0)
+  yum (3.13.0)
+  yum-epel (4.1.4)

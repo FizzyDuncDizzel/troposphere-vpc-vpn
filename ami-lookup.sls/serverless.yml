@@ -1,0 +1,27 @@
+service: ami-lookup
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: true
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!package.json'
+    - '!package-lock.json'
+provider:
+  name: aws
+  runtime: python3.7
+  lambdaHashingVersion: 20201221
+  memorySize: 128
+  timeout: 10
+  logRetentionInDays: 7
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - ec2:DescribeImages
+      Resource: '*'
+
+functions:
+  AmiId:
+    handler: lambda/index.handler

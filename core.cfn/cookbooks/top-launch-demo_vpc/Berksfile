@@ -1,0 +1,15 @@
+# source 'https://minimart.sturdynetworks.com'
+source 'https://supermarket.chef.io'
+solver :ruby, :required
+
+metadata
+
+# For sturdy_openvpn
+# Version on supermarket is way old
+cookbook('openvpn',
+         github: 'xhost-cookbooks/openvpn',
+         ref: '34b2723a7539c8550d6b42e9dd09fe285c158b9c') # v3.0.0
+
+cookbook('sturdy_openvpn',
+        git: 'git@bitbucket.org:nbdev/sturdy_openvpn-cookbook.git',
+        branch: 'top-working-branch-from-4.0.1')

@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+runway = "==2.4.2"
+# awscli = "==1.15.85"
+
+[requires]
+python_version = "3.9"

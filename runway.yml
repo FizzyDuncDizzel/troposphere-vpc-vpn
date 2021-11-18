@@ -1,0 +1,14 @@
+---
+# See full syntax at https://github.com/onicagroup/runway
+
+deployments:
+  - modules:
+      - path: ami-lookup.sls
+      - path: core.cfn
+        parameters:
+          cfngin_bucket_name: cfngin-training-${env USER}
+      - path: tf-state.cfn
+      - path: img-mgr.tf
+    regions:
+      - us-west-2
+    account_id: 379776712928
